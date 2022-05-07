@@ -24,19 +24,19 @@ namespace ShopPhone.Controllers
             var temp = HttpContext.Session.GetString("DonHang");
             return View(list);
         }
-        public ActionResult ThemGioHang(string iMasp)
+        public ActionResult ThemGioHang(string id)
         {
-            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.MaSanPham == iMasp);
+            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.MaSanPham == id);
             if (sp == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            Giohang giohang = list.Find(n => n.masp == iMasp);
+            Giohang giohang = list.Find(n => n.masp == id);
             if (giohang == null)
             {
                 //Add sản phẩm mới thêm vào list
-                giohang = new Giohang(iMasp);
+                giohang = new Giohang(id);
                 list.Add(giohang);
                 return RedirectToAction("Index", "Sanphams");
             }

@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ShopPhone.Models.Sanpham>
 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,8 +9,7 @@
 
 <div class="brand">
     <div class="container">
-
-    </div>
+        </div>
     <div class="brand-bg">
         <div class="container">
             <div class="row">
@@ -27,19 +28,13 @@
                             <i><img src="/images/star.png" /></i>
                             <h3>Giá: <strong class="red">@String.Format("{0:0,0}", item.GiaTien)  VND</strong></h3>
                             <div class="col-md-12">
-                                <a class="read-more">
-                                    @using (Html.BeginForm("ThemGioHang", "Donhang", new { @iMasp = item.MaSanPham}))
-                                    {
-                                        <input type="submit" value="Mua hàng" id="bgnGioHang" />
-
-                                    }
-                                </a>
+                                <a class="read-more" asp-action="ThemGioHang" asp-controller="Donhang" asp-route-id="@item.MaSanPham">Mua hàng </a>
                             </div>
                         </div>
                     </div>
-                }
+                    }
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
